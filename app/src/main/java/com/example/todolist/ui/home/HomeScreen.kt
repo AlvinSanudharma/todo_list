@@ -28,7 +28,7 @@ fun HomeScreen (
     Scaffold (
       topBar = {
         TopAppBar(
-            title = { Text( text = "Home") }
+            title = { Text( text = "To-Do List") }
         )
       },
         floatingActionButton = {
