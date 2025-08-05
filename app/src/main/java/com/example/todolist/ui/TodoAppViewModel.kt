@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.todolist.model.Task
 
 class TodoAppViewModel: ViewModel() {
-    private val _tasks = mutableStateListOf<Task>(
+    private val _tasks = mutableStateListOf(
         Task("1", "Makan"),
         Task("2", "Tidur", "Istirahat tidur siang"),
         Task("3", "Kerja"),
