@@ -36,7 +36,9 @@ fun HomeScreen (
       },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {}
+                onClick = {
+                    navController.navigate("add")
+                }
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -52,7 +54,7 @@ fun HomeScreen (
                         modifier = Modifier
                                 .padding(8.dp)
                             .clickable {
-                                // TODO
+                                navController.navigate("detail/${task.id}")
                             }
                     ) {
                         Text(text = task.title,

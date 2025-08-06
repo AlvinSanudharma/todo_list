@@ -1,5 +1,6 @@
 package com.example.todolist.ui.detail
 
+import android.provider.CalendarContract.Colors
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -26,7 +28,7 @@ import com.example.todolist.ui.TodoAppViewModel
 fun TaskDetailScreen(
     navController: NavController,
     viewModel: TodoAppViewModel,
-    taskId: String
+    taskId: String?
 ) {
     val task = viewModel.getTaskById(taskId)
 
@@ -35,12 +37,18 @@ fun TaskDetailScreen(
             TopAppBar(
                 title = { Text(text = task?.title ?: "") },
                 navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 },
                 actions = {
-                    TextButton(onClick = { }) {
+                    TextButton(onClick = {
+                        viewModel.deleteTask(task?.id)
+
+                        navController.popBackStack()
+                    }) {
                         Text("Delete")
                     }
                 }
@@ -54,6 +62,7 @@ fun TaskDetailScreen(
             Text(
                 text = task?.description ?: "",
                 style = MaterialTheme.typography.bodyMedium,
+                color = Color.Black,
                 modifier = Modifier.padding(16.dp).padding(top = 16.dp).fillMaxSize()
             )
         }

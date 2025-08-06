@@ -26,7 +26,7 @@ fun ToDoApp(
         composable("detail/{taskId}") { backStackEntry ->
             val taskId = backStackEntry.arguments?.getString("taskId")
 
-            TaskDetailScreen(navController = navController ,viewModel = viewModel, taskId = taskId ?: "")
+            TaskDetailScreen(navController = navController ,viewModel = viewModel, taskId = taskId)
         }
     }
 }
