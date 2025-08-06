@@ -1,5 +1,6 @@
 package com.example.todolist.ui.home
 
+import android.provider.CalendarContract.Colors
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,8 +15,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -31,7 +36,11 @@ fun HomeScreen (
     Scaffold (
       topBar = {
         TopAppBar(
-            title = { Text( text = "To-Do List") }
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = Color(0XFF447D9B),
+                titleContentColor = Color.White,
+            ),
+            title = { Text( text = "To-Do List") },
         )
       },
         floatingActionButton = {

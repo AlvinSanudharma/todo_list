@@ -3,17 +3,24 @@ package com.example.todolist.ui.detail
 import android.provider.CalendarContract.Colors
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,14 +40,35 @@ fun TaskDetailScreen(
     val task = viewModel.getTaskById(taskId)
 
     Scaffold(
+        bottomBar = {
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0XFFFE7743)
+                ),
+                onClick = { },
+                modifier = Modifier.padding(16.dp).fillMaxWidth()
+            ) {
+                Text("Edit")
+            }
+        },
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = Color(0XFF447D9B),
+                    titleContentColor = Color.White,
+                ),
                 title = { Text(text = task?.title ?: "") },
                 navigationIcon = {
-                    IconButton(onClick = {
+                    IconButton(
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = Color.White
+                        ),
+                        onClick = {
                         navController.popBackStack()
                     }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                        )
                     }
                 },
                 actions = {
@@ -48,7 +76,11 @@ fun TaskDetailScreen(
                         viewModel.deleteTask(task?.id)
 
                         navController.popBackStack()
-                    }) {
+                    },
+                        colors = ButtonDefaults.textButtonColors(
+                            contentColor = Color.White
+                        )
+                    ) {
                         Text("Delete")
                     }
                 }
@@ -61,7 +93,7 @@ fun TaskDetailScreen(
         ) {
             Text(
                 text = task?.description ?: "",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 color = Color.Black,
                 modifier = Modifier.padding(16.dp).padding(top = 16.dp).fillMaxSize()
             )
